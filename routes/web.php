@@ -11,22 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/category', 'HomeController@category')->name('category');
 
-Route::get('/produk', function () {
-    return view('produk');
-})->name('produk');
+Auth::routes();
 
-Route::get('/detail-produk/{id?}', function ($id = NULL) {
-    return view('detail-produk', array('id' => $id));
-})->name('detail-produk');
 
-Route::get('/keranjang', function () {
-    return view('keranjang');
-})->name('keranjang');
-
-Route::get('/checkout', function () {
-    return view('checkout');
-})->name('checkout');
+Route::resource('menus', 'MenuController');
+Route::get('/kategories/count', 'KategoriController@count')->name('kategories.count');
+Route::resource('kategories', 'KategoriController');
+Route::resource('products', 'ProductController');
+//Route::get('/home', 'HomeController@index')->name('home');
